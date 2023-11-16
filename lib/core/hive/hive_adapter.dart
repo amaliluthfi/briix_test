@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:briix_test/module/models/movie_model.dart';
+import 'package:briix_test/module/home/models/movie_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;

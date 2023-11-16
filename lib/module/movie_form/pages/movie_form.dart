@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:briix_test/core/style/app_colors.dart';
 import 'package:briix_test/main.dart';
-import 'package:briix_test/module/controllers/home_controller.dart';
+import 'package:briix_test/module/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../widgets/custom_text_form_field.dart';
+import '../../widgets/custom_text_form_field.dart';
 
 @RoutePage()
 class MovieFormScreen extends StatefulWidget {
@@ -22,10 +22,15 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   @override
   void initState() {
     if (widget.movieId != "new") {
-      // print("ini id ${widget.movieId.}");
       controller.getData(widget.movieId);
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.clearForm();
+    super.dispose();
   }
 
   @override
@@ -81,6 +86,9 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                   controller: controller.summaryTxt,
                   label: "Summary",
                   maxLine: 3,
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
                 Wrap(
                   children: List.generate(

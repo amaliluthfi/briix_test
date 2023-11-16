@@ -1,5 +1,5 @@
 import 'package:briix_test/core/style/app_colors.dart';
-import 'package:briix_test/module/models/movie_model.dart';
+import 'package:briix_test/module/home/models/movie_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:mobx/mobx.dart';
@@ -93,13 +93,7 @@ abstract class HomeControllerBase with Store {
             );
           });
 
-      titleTxt.clear();
-      summaryTxt.clear();
-      directorTxt.clear();
-      selectedGenres.clear();
-      allGenres.forEach((element) {
-        element["selected"] = false;
-      });
+      clearForm();
     }
   }
 
@@ -129,7 +123,7 @@ abstract class HomeControllerBase with Store {
       var indBox =
           movieBox.values.toList().indexWhere((element) => element.id == id);
       var indMovie = movie.indexWhere((element) => element.id == id);
-      if (indMovie > 0) {
+      if (indMovie >= 0) {
         movie[indMovie] = MovieModel(
             title: titleTxt.text,
             director: directorTxt.text,
@@ -138,7 +132,7 @@ abstract class HomeControllerBase with Store {
             id: id);
       }
 
-      if (indBox > 0) {
+      if (indBox >= 0) {
         movieBox.putAt(
             indBox,
             MovieModel(
@@ -166,13 +160,7 @@ abstract class HomeControllerBase with Store {
             );
           });
 
-      titleTxt.clear();
-      summaryTxt.clear();
-      directorTxt.clear();
-      selectedGenres.clear();
-      allGenres.forEach((element) {
-        element["selected"] = false;
-      });
+      clearForm();
     }
   }
 
@@ -182,11 +170,10 @@ abstract class HomeControllerBase with Store {
     int indBox =
         movieBox.values.toList().indexWhere((element) => element.id == id);
 
-    print("in index $indMovie");
-    if (indMovie > 0) {
+    if (indMovie >= 0) {
       movie.removeAt(indMovie);
     }
-    if (indBox > 0) {
+    if (indBox >= 0) {
       movieBox.deleteAt(indBox);
     }
 
@@ -207,13 +194,7 @@ abstract class HomeControllerBase with Store {
           );
         });
 
-    titleTxt.clear();
-    summaryTxt.clear();
-    directorTxt.clear();
-    selectedGenres.clear();
-    allGenres.forEach((element) {
-      element["selected"] = false;
-    });
+    clearForm();
   }
 
   @action
@@ -243,5 +224,16 @@ abstract class HomeControllerBase with Store {
         });
       });
     }
+  }
+
+  @action
+  void clearForm() {
+    titleTxt.clear();
+    summaryTxt.clear();
+    directorTxt.clear();
+    selectedGenres.clear();
+    allGenres.forEach((element) {
+      element["selected"] = false;
+    });
   }
 }

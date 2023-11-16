@@ -188,6 +188,17 @@ mixin _$HomeController on HomeControllerBase, Store {
   }
 
   @override
+  void clearForm() {
+    final _$actionInfo = _$HomeControllerBaseActionController.startAction(
+        name: 'HomeControllerBase.clearForm');
+    try {
+      return super.clearForm();
+    } finally {
+      _$HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 titleTxt: ${titleTxt},

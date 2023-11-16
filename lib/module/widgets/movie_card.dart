@@ -1,5 +1,5 @@
 import 'package:briix_test/core/style/app_colors.dart';
-import 'package:briix_test/module/models/movie_model.dart';
+import 'package:briix_test/module/home/models/movie_model.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {

@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:briix_test/core/routes/route_constant.dart';
 import 'package:briix_test/core/style/app_colors.dart';
 import 'package:briix_test/main.dart';
-import 'package:briix_test/module/controllers/home_controller.dart';
-import 'package:briix_test/module/models/movie_model.dart';
+import 'package:briix_test/module/home/controllers/home_controller.dart';
+import 'package:briix_test/module/home/models/movie_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../widgets/movie_card.dart';
+import '../../widgets/movie_card.dart';
 
 @RoutePage()
 class MyHomePage extends StatefulWidget {
@@ -39,17 +40,19 @@ class _MyHomePageState extends State<MyHomePage> {
               MovieModel item = controller.movie[index];
               return GestureDetector(
                   onTap: () {
-                    AutoRouter.of(context).pushNamed("/movie_form/${item.id}");
+                    AutoRouter.of(context).pushNamed(
+                        "${RouteConstant.movieFormRoute}/${item.id}");
                   },
                   child: MovieCard(item: item));
             });
       }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.secondaryColor,
-        onPressed: () => AutoRouter.of(context).pushNamed("/movie_form/new"),
+        onPressed: () => AutoRouter.of(context)
+            .pushNamed("${RouteConstant.movieFormRoute}/new"),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
